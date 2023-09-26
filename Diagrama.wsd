@@ -1,0 +1,49 @@
+@startuml Diagrama
+
+class Main {
+  +main(args: String[]): void
+}
+
+class Empleado {
+  -RFC: String
+  -apellidos: String
+  -nombres: String
+  +Empleado(RFC: String, apellidos: String, nombres: String)
+  +ingresos(): double
+  +calcularBonificacion(): double
+  +calcularDescuento(): double
+  +calcularSueldoNeto(): double
+  +mostrarInformacion()
+}
+
+class EmpleadoVendedor {
+  -montoVendido: double
+  -tasaComision: double
+  +EmpleadoVendedor(RFC: String, apellidos: String, nombres: String, montoVendido: double, tasaComision: double)
+  +ingresos(): double
+  +calcularBonificacion(): double
+  +calcularDescuento(): double
+  +calcularSueldoNeto(): double
+}
+
+class EmpleadoPermanente {
+  -sueldoBase: double
+  -numeroSeguroSocial: String
+  -SALARIO_MINIMO: double
+  +EmpleadoPermanente(RFC: String, apellidos: String, nombres: String, sueldoBase: double, numeroSeguroSocial: String) throws SalarioInvalidoException
+  +ingresos(): double
+  +calcularBonificacion(): double
+  +calcularDescuento(): double
+  +calcularSueldoNeto(): double
+}
+
+class SalarioInvalidoException {
+  +SalarioInvalidoException(mensaje: String)
+}
+
+Main --> Empleado
+Main --> EmpleadoVendedor
+Main --> EmpleadoPermanente
+EmpleadoPermanente --> SalarioInvalidoException
+
+@enduml
